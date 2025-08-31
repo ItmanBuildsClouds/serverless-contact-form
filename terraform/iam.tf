@@ -1,3 +1,5 @@
+data "aws_caller_identity" "current" {}
+
 resource "aws_iam_role" "iam_role_form" {
     name = "${var.project_name}-lambda-role"
 

@@ -9,7 +9,7 @@ resource "aws_lambda_function" "contact_form_lambda" {
     function_name = "${var.project_name}-function"
     role = aws_iam_policy.iam_policy_form.arn
     handler = "lambda_function.lambda_handler"
-    source_code_hash = data.archive_file.lambda.output_path_base64sha256
+    source_code_hash = data.archive_file.lambda.output_base64sha256
     runtime = "python3.12"
     environment {
         variables = {

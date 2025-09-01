@@ -1,18 +1,15 @@
 import json
-import boto3
 import os
 import re
-from aws_lambda_typing.context import Context
-from aws_lambda_typing.events import APIGatewayProxyEventV2
-from mypy_boto3_ses.client import SESClient
+import boto3
 
 
-ses: SESClient = boto3.client("ses")
+ses = boto3.client("ses")
 RECIPIENT_MAIL = os.environ.get("RECIPIENT_MAIL")
 EMAIL_REGEX = re.compile(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
 
 
-def lambda_handler(event: APIGatewayProxyEventV2, context: Context):
+def lambda_handler(event, context):
     try:
 #
 #

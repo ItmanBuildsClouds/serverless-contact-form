@@ -31,7 +31,7 @@ resource "aws_iam_policy" "iam_policy_form" {
                     "logs:CreateLogStream",
                     "logs:PutLogEvents"
                 ],
-                Resource = "arn:aws:logs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/${var.project_name}-contact-form:*"
+                Resource = "arn:aws:logs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/${var.project_name}-function:*"
             },
             {
                 Effect = "Allow",

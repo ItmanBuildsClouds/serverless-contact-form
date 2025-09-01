@@ -21,3 +21,12 @@ resource "aws_lambda_function" "contact_form_lambda" {
         Project = var.project_name
     }
 }
+resource "aws_lambda_permission" "name" {
+    statement_id = "AllowExecutionAPIGateway"
+    action = "lambda:InvokeFunction"
+    function_name = aws_lambda_function.contact_form_lambda.function_name
+    principal = "apigateway.amazonaws.com"
+    source_arn = "${aws_api_gateway_rest_api.contact-api.execution_arn}/*/${aws_api_gateway_method.contact-api-method.http_method}${aws_api_gateway_resource.contact-api-resource.path}"
+}
+
+

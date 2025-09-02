@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const subjectInput = document.getElementById('subjectInput');
     const messageTextarea = document.getElementById('messageTextarea');
 
-    const apiUrl = 'https://ulhhqf6ej4.execute-api.eu-central-1.amazonaws.com/prod/contact'
+    const apiUrl = 'https://api.itmanbuildsclouds.website/contact'
 
     contactForm.addEventListener('submit', function (event) {
 
@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         fetch(apiUrl, {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(formData)
         });
         alert("Form sent! Data collected:");

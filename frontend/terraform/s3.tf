@@ -38,6 +38,7 @@ resource "aws_s3_bucket_policy" "s3_form_policy" {
   bucket = aws_s3_bucket.s3_form_bucket.id
   policy = data.aws_iam_policy_document.s3_form_bucket_policy_document.json
   
+  depends_on = [ aws_s3_bucket_public_access_block.s3_form_public_access ]
 }
 
 resource "aws_s3_bucket_website_configuration" "example" {

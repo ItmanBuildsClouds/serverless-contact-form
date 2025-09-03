@@ -7,7 +7,7 @@ data archive_file "lambda" {
 resource "aws_lambda_function" "contact_form_lambda" {
     filename = data.archive_file.lambda.output_path
     function_name = "${var.project_name}-function"
-    role = aws_iam_role.iam_role_form.arn
+    role = aws_iam_role.iam_role.arn
     handler = "lambda_function.lambda_handler"
     source_code_hash = data.archive_file.lambda.output_base64sha256
     runtime = "python3.12"
@@ -21,12 +21,13 @@ resource "aws_lambda_function" "contact_form_lambda" {
         Project = var.project_name
     }
 }
-resource "aws_lambda_permission" "name" {
+resource "aws_lambda_permission" "api_gateway_permission" {
     statement_id = "AllowExecutionAPIGateway"
     action = "lambda:InvokeFunction"
     function_name = aws_lambda_function.contact_form_lambda.function_name
     principal = "apigateway.amazonaws.com"
-    source_arn = "${aws_api_gateway_rest_api.contact-api.execution_arn}/*/${aws_api_gateway_method.contact-api-method.http_method}${aws_api_gateway_resource.contact-api-resource.path}"
+
+    source_arn = "${aws_apigatewayv2_api.contact_api.execution_arn}/*/*"
 }
 
 

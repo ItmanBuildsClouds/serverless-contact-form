@@ -5,14 +5,15 @@ terraform {
       version = "~> 6.0"
     }
   }
-}
-##for route 53
-provider "aws" {
-  region = "eu-central-1"
+    backend "s3" {
+    bucket = "contact-form-yjlbq"
+    key    = "serverless-contact-form/certificate.tfstate"
+    region = "eu-central-1"
+  }
 }
 ##for certificate
 provider "aws" {
-  region = var.aws_region
+  region = "us-east-1"
   alias = "us-east-1"
 }
 data "aws_route53_zone" "domain_main" {

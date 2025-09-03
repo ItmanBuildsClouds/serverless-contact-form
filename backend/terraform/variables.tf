@@ -10,4 +10,7 @@ variable "recipient_email" {
     type = string
     description = "Variable for the AWS SES service in AWS Lambda."
 }
-  
+variable "domain_name" {
+    type = string
+    default = "itmanbuildsclouds.website"
+}

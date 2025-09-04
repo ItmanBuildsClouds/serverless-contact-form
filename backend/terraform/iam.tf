@@ -1,6 +1,6 @@
 data "aws_caller_identity" "current" {}
 
-resource "aws_iam_role" "iam_role_form" {
+resource "aws_iam_role" "iam_role" {
     name = "${var.project_name}-lambda-role"
 
     assume_role_policy = jsonencode({
@@ -43,6 +43,6 @@ resource "aws_iam_policy" "iam_policy_form" {
 }
 
 resource "aws_iam_role_policy_attachment" "iam_attachment_form" {
-    role = aws_iam_role.iam_role_form.name
+    role = aws_iam_role.iam_role.name
     policy_arn = aws_iam_policy.iam_policy_form.arn
 }

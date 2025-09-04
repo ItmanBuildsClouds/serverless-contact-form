@@ -11,3 +11,7 @@ variable "bucket_prefix" {
     type = string
     default = "contact-form"
 }
+variable "domain_name" {
+    type = string
+    default = "itmanbuildsclouds.website"
+}
